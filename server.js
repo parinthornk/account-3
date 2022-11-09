@@ -117,6 +117,59 @@ app.all('/echo', echo);
 app.all('/kvms', kvms);
 app.all('/kvms/*', kvms);
 
+// ---------------------------------------------------------------------------------------------------------------- //
+
+app.get('/test-403-good', (req, res) => {
+	res.setHeader('Content-Type', 'application/json');
+	res.setHeader('Allow', '*');
+	res.status(403);
+	res.end(json2string({
+		"message": '/test-403-good'
+	}));
+});
+
+app.get('/test-403-bad', (req, res) => {
+	res.setHeader('Content-Type', 'application/json');
+	res.status(403);
+	res.end(json2string({
+		"message": '/test-403-bad'
+	}));
+});
+
+app.get('/test-405-good', (req, res) => {
+	res.setHeader('Content-Type', 'application/json');
+	res.setHeader('Allow', '*');
+	res.status(405);
+	res.end(json2string({
+		"message": '/test-405-good'
+	}));
+});
+
+app.get('/test-405-bad', (req, res) => {
+	res.setHeader('Content-Type', 'application/json');
+	res.status(405);
+	res.end(json2string({
+		"message": '/test-405-bad'
+	}));
+});
+
+// ---------------------------------------------------------------------------------------------------------------- //
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.listen(process.env.PORT || 5000);
 
 function echo(req, res) {
