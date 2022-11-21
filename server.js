@@ -153,6 +153,20 @@ app.get('/test-405-bad', (req, res) => {
 	}));
 });
 
+app.get('/test-204-good', (req, res) => {
+	res.setHeader('Content-Type', 'application/json');
+	res.status(204);
+	res.end();
+});
+
+app.get('/test-204-bad', (req, res) => {
+	res.setHeader('Content-Type', 'application/json');
+	res.status(204);
+	res.end(json2string({
+		"message": '/test-204-bad'
+	}));
+});
+
 // ---------------------------------------------------------------------------------------------------------------- //
 
 
